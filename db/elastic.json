@@ -1,0 +1,260 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-11-27T16:30:16.249Z",
+	"__export_source": "insomnia.desktop.app:v5.11.7",
+	"resources": [
+		{
+			"_id": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"parentId": null,
+			"modified": 1511589620469,
+			"created": 1511589620469,
+			"name": "Insomnia",
+			"description": "",
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_271b2dc753994d13abd70a88ca8de51e",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511589620720,
+			"created": 1511589620720,
+			"name": "Base Environment",
+			"data": {},
+			"color": null,
+			"isPrivate": false,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_27ac0b7af252496683c71fa5396c28c2",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511589620471,
+			"created": 1511589620471,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "req_98838c9f21b04a6aa6d16d35e3a06a8c",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511800045364,
+			"created": 1511590164416,
+			"url": "https://elasticsearch.pulselabs.co.in/mf_navdata/_search",
+			"name": "PulseLabs - Group By Period",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"size\": 0,\n\t\"query\": {\n\t\t\"bool\": {\n\t\t\t\"must\": [\n\t\t\t\t{\n\t\t\t\t\t\"match_all\": {}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"bool\": {\n\t\t\t\t\t\t\"minimum_should_match\": 1,\n\t\t\t\t\t\t\"should\": [\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"match_phrase\": {\n\t\t\t\t\t\t\t\t\t\"scheme_code\": \"120079\"\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"match_phrase\": {\n\t\t\t\t\t\t\t\t\t\"scheme_code\": \"123638\"\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\t\"range\": {\n\t\t\t\t\t\t\"nav_date\": [\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\"format\": \"yyyy-MM-dd\",\n\t\t\t\t\t\t\t\t\"lte\": \"2017-12-30\",\n\t\t\t\t\t\t\t\t\"gte\": \"2016-12-30\"\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t]\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"must_not\": []\n\t\t}\n\t},\n\t\"_source\": {\n\t\t\"excludes\": []\n\t},\n\t\"aggs\": {\n\t\t\"group_by_date\": {\n\t\t\t\"date_histogram\": {\n\t\t\t\t\"field\": \"nav_date\",\n\t\t\t\t\"interval\": \"year\",\n\t\t\t\t\"time_zone\": \"Asia/Kolkata\",\n\t\t\t\t\"min_doc_count\": 1,\n\t\t\t\t\"format\": \"yyyy-MM-dd\",\n\t\t\t\t\"keyed\": true\n\t\t\t},\n\t\t\t\"aggs\": {\n\t\t\t\t\"rec\": {\n\t\t\t\t\t\"terms\": {\n\t\t\t\t\t\t\"field\": \"scheme_code.keyword\"\n\t\t\t\t\t},\n\t\t\t\t\t\"aggs\": {\n\t\t\t\t\t\t\"group_docs\": {\n\t\t\t\t\t\t\t\"top_hits\": {\n\t\t\t\t\t\t\t\t\"size\": 1,\n\t\t\t\t\t\t\t\t\"_source\": {\n\t\t\t\t\t\t\t\t\t\"includes\": [\n\t\t\t\t\t\t\t\t\t\t\"nav\"\n\t\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\t\"sort\": [\n\t\t\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\t\t\t\"nav_date\": {\n\t\t\t\t\t\t\t\t\t\t\t\"order\": \"desc\"\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t]\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_978d4b46db5b41edbabb9462e937338f"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511791356487.625,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_03c9afc23e5549f282c56dbaf0829023",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511799749108,
+			"created": 1511782585557,
+			"url": "https://elasticsearch.pulselabs.co.in/auth/user/_search?size=0",
+			"name": "PulseLabs - Users",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"query\":{\n\t\t\"bool\":{\n\t\t\t\"must\":[\n\t\t\t\t   {\"match\":{\"partner\":\"AGUAIN-DEMO\"}},\n\t\t\t\t   {\"match\":{\"key\":\"pulse123\"}}\n      ]\n\t\t}\n\t}\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_d4fc50066cb54dd994c06c995b64afd3"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511792846490,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_f60fea574de44a32977c6fdb8b453f1a",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511799751216,
+			"created": 1511788903699,
+			"url": "https://elasticsearch.pulselabs.co.in/user",
+			"name": "PulseLabs - Session",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"mappings\": {\n\t\t\"session\": {\n\t\t\t\"properties\": {\n\t\t\t\t\"active_till\": {\n\t\t\t\t\t\"type\": \"date\"\n\t\t\t\t},\n\t\t\t\t\"partner\": {\n\t\t\t\t\t\"type\": \"text\"\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_0487fc8ee64540159bdc3bc9d41c0bc5"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511792846477.5,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_05fbfea1e4b34ebd827193421555b971",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511799999157,
+			"created": 1511789607493,
+			"url": "https://elasticsearch.pulselabs.co.in/user/session",
+			"name": "PulseLabs - SessionCreate",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"partner\":\"AGUAIN-DEMO\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_f3d7509ffaaa415f8d53369fe4ace5c1"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511792846474.375,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_33144355e841485fb78b57b5b84c3801",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511799763658,
+			"created": 1511789674315,
+			"url": "https://elasticsearch.pulselabs.co.in/session/user/_update_by_query?conflicts=proceed",
+			"name": "PulsLabs - SessionCheck",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"query\":{\n\t\t\"bool\": {\n\t\t\t\"must\":[\n\t\t\t\t{\"match\": {\"_id\":\"token123\"}}\n\t\t\t],\n\t\t\t\"filter\": {\n        \"range\" : { \"active_till\" : {\"gte\":\"2017-11-27 21:24:25\"}}\n      }\n\t\t}\n\t},\n\t\"script\": {\n\t\t\"source\": \"ctx._source['active_till'] = params.time_extend\",\n\t  \"lang\": \"painless\",\n\t  \"params\": {\n\t\t\t\"time_extend\": \"2017-11-27 21:27:25\"\n\t  }\n\t}\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_687f50c913314782a39f418d39851fe6"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511792846471.25,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_be00cda5cc1240a1abea23abcaf974a9",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511796437747,
+			"created": 1511789866504,
+			"url": "https://elasticsearch.pulselabs.co.in/session/user/token123",
+			"name": "Misc",
+			"description": "",
+			"method": "GET",
+			"body": {
+				"mimeType": "application/json",
+				"text": ""
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_c5ac6e72224a40febbdd22300fb0e046"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511789866504,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_0e35b0628227470197e6b99b5d9f777a",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511799769080,
+			"created": 1511799363110,
+			"url": "https://elasticsearch.pulselabs.co.in/auth/user",
+			"name": "PulseLabs - Users - Create",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"partner\":\"AGUAIN-DEMO\",\n\t\"key\":\"pulse123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_322d3ff741c74bb193270b229451ce14"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1511792846483.75,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_ca21c317f6d24aca830cfe75d66e5182",
+			"parentId": "wrk_2bf9a41fa0724e6b83fe1ebf936e441e",
+			"modified": 1511799746029,
+			"created": 1511799580041,
+			"url": "https://elasticsearch.pulselabs.co.in/auth,user/_mappings",
+			"name": "PulseLabs - Mappings",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1511792846515,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		}
+	]
+}

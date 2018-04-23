@@ -1,0 +1,200 @@
+<link href="assets/css/custom.css" rel="stylesheet" />
+<link href="assets/plugins/angular-tooltips/angular-tooltips.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.theme.default.min.css">
+
+
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+    <a class="navbar-brand text-success" href="#">SiteSuptOnDemand</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Main Menu Start -->
+        <ul class="nav navbar-nav ml-md-5 mr-auto">
+            <li class="nav-item dropdown {{nav==1?'active':''}}">
+                <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown">Standard Reports
+                                                <span class="caret"></span></a>
+                <div class="dropdown-menu font-size-13">
+                    <a class="dropdown-item text-dark px-md-3" ng-repeat="report in dc.reports" ng-click="siteOnClick($event, report)">{{report}}</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown {{nav==2?'active':''}}">
+                <a class="nav-link dropdown-toggle text-dark" data-toggle="dropdown">Support
+                                                    <span class="caret"></span></a>
+                <div class="dropdown-menu font-size-13">
+                    <a class="dropdown-item text-dark px-md-3" ng-repeat="mode in dc.support" ng-click="siteOnClick($event, mode)">{{mode}}</a>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav ml-auto mr-5">
+            <li class="dropdown">
+                <a data-target="#user_actions" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="user-name">{{dc.user.user_name}}</span> <span class="caret"></span></a>
+                <div class="dropdown-menu font-size-13 mr-5" id="user_actions">
+                    <a class="dropdown-item text-dark px-md-3" href="#profile">Profile</a>
+                    <a class="dropdown-item text-dark px-md-3" href="#settings">Settings</a>
+                    <a class="dropdown-item text-dark px-md-3" href="#change_password">Change Password</a>
+                    <a class="dropdown-item text-dark px-md-3" href="#logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+
+        <!-- Main Menu End -->
+    </div>
+</nav>
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 py-3">
+                <div class="text-success">
+                    <a class="btn btn-success" href=""><i class="fa fa-map-marker"></i></a> <span class="px-2 font-weight-700">{{dc.site_opted.site_name}}, {{dc.site_opted.site_city}}</span>
+                    <a class="px-5" style="font-weight: normal; font-size: 12px;" href="#">
+                        <u>Change</u>
+                    </a>
+                    <button class="btn btn-success btn-sm pull-right m-3" ng-show="dc.location_history" ng-click="dc.showLocations()"> Back </button>
+                </div>
+
+            </div>
+        </div>
+        <div class="row" ng-hide="dc.location_history" id="locations-container">
+            <div class="col-md-4 py-2" ng-repeat="location in dc.locations">
+                <div class="card border border-primary bg-shadow">
+
+                    <div class="card-body p-0">
+                        <img ng-dblclick="dc.locationOnDblClick($event, location)" class="card-img-top img-fluid d-block" src="{{location.image}}" alt="{{location.location_name}}">
+                    </div>
+
+                    <!-- Site Current Status -->
+                    <div class="card-header bg-primary border border-primary text-warning border-top-light">
+                        <b class="font-weight-700">{{location.location_name}}</b>
+                        <div class="text-light"><span class="font-size-12 font-weight-300">{{location.location_lastupdate | date:'MMM dd, yyyy HH:mm Z'}}</span></div>
+                        <div>
+                            <small class="font-weight-300"><i class="fa fa-thermometer"></i> {{location.location_temperature | number:2}} °F</small>
+                            <small class="font-weight-300 ml-3"><i class="fa fa-tint"></i> {{location.location_humidity | number:2}} %</small>
+
+                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'warning'}).length>0" class="btn bg-warning-light badge-custom ml-5 font-size-12" on1click="var ep = $(this).closest('.card').find('.event-info-warning').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show warnings' : 'Hide warnings' );"
+                                data-toggle="tooltip" title="{{(dc.events[location.location_id]|filter:{event_level:'warning'}).length}} warnings"> {{(dc.events[location.location_id]|filter:{event_level:'warning'}).length}}</button>
+
+                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'alert'}).length > 0" class="btn bg-alert-light badge-custom ml-2 font-size-12" on1click="var ep = $(this).closest('.card').find('.event-info-alert').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show alerts' : 'Hide alerts' );"
+                                data-toggle="tooltip" title="{{(dc.events[location.location_id]|filter:{event_level:'alert'}).length}} alerts"> {{(dc.events[location.location_id]|filter:{event_level:'alert'}).length}}</button>
+
+                            <button ng-if="(dc.events[location.location_id]).length > 0" class="btn btn-success badge-custom ml-2 font-size-12" ng-click="dc.showAll($event)" data-toggle="tooltip" title="Show Location Events"> <i class="fa fa-plus"></i> </button>
+                            <button data-toggle="tooltip" title="Show Location History" class="btn btn-success badge-custom ml-2 font-size-12" ng-click="dc.showLocationHistory($event, location)"> <i class="fa fa-history"></i> </button>
+                        </div>
+                    </div>
+
+                    <!-- Site Alerts / Warnings -->
+                    <div class="card-footer bg-primary border border-primary border-top-light text-dark hide" ng-repeat="event in dc.events[location.location_id] | orderBy:'event_level'">
+                        <div ng-if="event.sensor_id == 'temperature'" class="event-info-{{event.event_level}}">
+                            <span class="site-param font-weight-700">
+                                <i class="fa fa-thermometer event-{{event.event_level}}"></i> Temperature
+                            </span> {{event.event_value | number:2}} °F
+                            <span class="site-param font-weight-300 pull-right font-size-12">{{event.timestamp | date:'MMM dd, yyyy HH:mm'}}</span>
+                            <br>
+                            <span class="font-weight-300 text-capitalize font-size-12 py-2">{{event.event_message}}</span>
+                        </div>
+                        <div ng-if="event.sensor_id == 'humidity'" class="event-info-{{event.event_level}}">
+                            <span class="site-param font-weight-700">
+                                <i class="fa fa-tint event-{{event.event_level}}"></i> Humidity 
+                            </span> {{event.event_value | number:2}}%
+                            <span class="site-param font-weight-300 pull-right font-size-12">{{event.timestamp | date:'MMM dd, yyyy HH:mm'}}</span>
+                            <br>
+                            <span class="font-weight-300 text-capitalize font-size-12 py-2">{{event.event_message}}</span>
+                        </div>
+                        <div ng-if="event.sensor_id == 'motion'" class="event-info-{{event.event_level}}">
+                            <span class="site-param font-weight-700">
+                                        <i class="fa fa-street-view event-{{event.event_level}}"></i> Motion 
+                                    </span>
+                            <span class="site-param font-weight-300 pull-right font-size-12">{{event.timestamp | date:'MMM dd, yyyy HH:mm'}}</span>
+                            <br>
+                            <span class="font-weight-300 text-capitalize font-size-12 py-2">{{event.event_message}}</span>
+                        </div>
+                        <div ng-if="event.sensor_id == 'CO2'" class="event-info-{{event.event_level}}">
+                            <span class="site-param font-weight-700">
+                                        <i class="fa fa-warning event-{{event.event_level}}"></i> CO2 
+                                    </span> {{event.event_value | number:2}}%
+                            <span class="site-param font-weight-300 pull-right font-size-12">{{event.timestamp | date:'MMM dd, yyyy HH:mm'}}</span>
+                            <br>
+                            <span class="font-weight-300 text-capitalize font-size-12 py-2">{{event.event_message}}</span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row" id="locations-history" ng-show="dc.location_history">
+            <div class="col-md-8 py-3 bg-primary">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <img class="card-img-top history_image" src="">
+                            <div class="card-img-overlay">
+                                <div class="card-title">
+                                    <h6 class="site-hist-name text-success"></h6>
+                                    <button class="btn btn-sm btn-success ml-3 pull-right" data-toggle="tooltip" title="Full Image">
+                                            <i class="fa fa-external-link"></i>
+                                          </button>
+                                </div>
+                                <div class="site-hist-date text-primary font-weight-300"></div>
+                                <p class="card-text text-primary font-weight-300 py-3">
+                                    <span>
+                              <i class="fa fa-thermometer"></i> Temperature <span class="site-hist-temp"></span></span>
+                                    <span class="ml-3">
+                              <i class="fa fa-tint"></i> Humidity <span class="site-hist-humid"></span></span>
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="owl-carousel owl-theme owl-loaded owl-drag">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 bg-primary">
+                <div class="row">
+
+                    <div class="col-md-4 p-2" ng-repeat="image_cal in dc.image_calendar">
+                        <div class="card" style="cursor: pointer">
+                            <img ng-click="dc.showLocationHistoryByDate($event, image_cal)" class="card-img-top" src="{{image_cal.image_thumbnail}}">
+                            <div class="card-body p-1">
+                                <h5 class="card-title p-1 m-0 text-center font-size-11">{{image_cal.timestamp | date:'yyyy-mm-dd'}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="row" id="locations-history">
+                <link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.carousel.min.css">
+                <link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.theme.default.min.css">
+
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="history_image"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="owl-carousel owl-theme owl-loaded owl-drag">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+
+
+
+    </div>
+</div>

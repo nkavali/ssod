@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="http://wowslider.com/sliders/demo-65/engine1/style.css" />
+
+<div id="wowslider-container1">
+    <div class="ws_images">
+        <ul>
+            <li ng-repeat="location in location_history"><img width="100%" height="100%" src="{{location.image_thumbnail}}" alt="Coast" title="Coast" id="wows1_0" />{{location.yyyy_mm_dd}}</li>
+        </ul>
+    </div>
+    <div class="ws_thumbs">
+        <div>
+            <a ng-repeat="location in location_history" href="#" title="Coast"><img src="{{location.image_thumbnail}}" alt="Coast" />1</a>
+        </div>
+    </div>
+    <div class="ws_shadow"></div>
+</div>
+<script type="text/javascript" src="http://wowslider.com/images/demo/wowslider.js"></script>
+<script type="text/javascript" src="http://wowslider.com/images/demo/elegant-linear/engine1/script.js"></script>

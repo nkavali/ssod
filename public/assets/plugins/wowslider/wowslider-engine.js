@@ -1,0 +1,1 @@
+var slider = wowReInitor($("#wowslider-container1"), { effect: "book", prev: "", next: "", duration: 20 * 100, delay: 40 * 100, width: 740, height: 360, autoPlay: true, playPause: false, stopOnHover: true, loop: false, bullets: 0, caption: true, captionEffect: "slide", controls: true, onBeforeStep: 0, images: 0 });

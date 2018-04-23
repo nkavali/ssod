@@ -1,0 +1,44 @@
+{
+  "name": "isitewatch",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "chart.js": "^2.7.1",
+    "client-sessions": "^0.8.0",
+    "consolidate": "^0.15.0",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.2.0",
+    "ejs": "^2.4.2",
+    "elasticsearch": "^14.0.0",
+    "express": "^4.13.4",
+    "gentelella": "^1.4.0",
+    "letsencrypt": "^1.4.4",
+    "letsencrypt-express": "^1.1.5",
+    "mathjs": "^3.18.1",
+    "moment": "^2.19.3",
+    "moment-timezone": "^0.5.16",
+    "morgan": "^1.7.0",
+    "mysql": "^2.15.0",
+    "node-xlsx": "^0.11.2",
+    "nodemailer": "^4.4.0",
+    "nodemailer-ses-transport": "^1.5.1",
+    "serve-favicon": "^2.3.2",
+    "swagger-ui-express": "^2.0.13"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nkavali/ssod.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nkavali/ssod/issues"
+  },
+  "homepage": "https://github.com/nkavali/ssod#readme",
+  "description": ""
+}

@@ -1,0 +1,37 @@
+<link href="assets/css/custom.css" rel="stylesheet" />
+<div class="page-login">
+    <main class="page-content">
+        <div class="page-inner container">
+            <div id="main-wrapper">
+                <div class="row">
+                    <div class="text-center col-md-4 col-md-offset-4 col-xs-12">
+                        <div class="login-box appbox-shadow">
+                            <a href="/" class="logo-name app-color text-lg text-center">iSiteWatch</a>
+                            <p class="text-center gray-light">Please login into your account.</p>
+                            <br>
+                            <form method="POST" class="m-t-md" ng-submit="lc.authenticate()">
+                                <br><br>
+                                <div class="form-group">
+                                    <input ng-model='lc.user' type="text" class="form-control" placeholder="User Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input ng-model='lc.pwd' type="password" class="form-control" placeholder="Password" required>
+                                </div>
+                                <button type="submit" class="btn btn-sm btn-info pull-right">Login</button>
+                                <br><br>
+                            </form>
+                            <br />
+                            <br />
+                            <p class="text-center m-t-xs text-sm gray-light">2018 &copy; isitewatch.com</p>
+                        </div>
+                        <span class='app-color'><a href="#register" class="btn btn-link">Register</a> | <a href="#forgotpassword" class="btn btn-link">Forgot Password?</a></span>
+                    </div>
+                </div>
+                <!-- Row -->
+            </div>
+            <!-- Main Wrapper -->
+        </div>
+        <!-- Page Inner -->
+    </main>
+    <!-- Page Content -->
+</div>
