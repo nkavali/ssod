@@ -32,8 +32,11 @@
 
         dc.carousel.on('changed.owl.carousel', function(property) {
             var current = property.item.index;
-            var pos = $(property.target).find(".owl-item").eq(current).find("img").attr('pos');
+            var item = $(property.target).find(".item").eq(current);
+            $(property.target).find(".item").css('border', '0px solid red');
+            $(item).css('border', '3px solid #4388f6');
 
+            var pos = $(item).find("img").attr('pos');
             if (pos && dc.location_history && dc.location_history.length > 0) {
                 var rec = dc.location_history[pos];
                 $('.history_image').attr('src', rec.image);
@@ -46,6 +49,24 @@
             // console.log('Image position ' + pos);
             //dc.site_his_rec = dc.location_history[pos];
         });
+
+        dc.carousel.on('click', '.item', function(property) {
+            var pos = $(property.target).attr('pos');
+            var item = $(property.target);
+            $('.owl-carousel').find(".item").css('border', '0px solid red');
+            $(item).parent().css('border', '3px solid #4388f6');
+
+            if (pos && dc.location_history && dc.location_history.length > 0) {
+                var rec = dc.location_history[pos];
+                $('.history_image').attr('src', rec.image);
+                $('.site-hist-name').html(rec.name);
+                $('.site-hist-date').html($filter('date')(new Date(rec.timestamp), 'MMM dd, yyyy  HH:mm'));
+                $('.site-hist-temp').html(rec.temperature);
+                $('.site-hist-humid').html(rec.humidity);
+                console.log(JSON.stringify(dc.site_his_rec));
+            }
+        });
+
 
         dc.showLocations = function() {
             $('.owl-carousel').trigger('stop.owl.autoplay');
