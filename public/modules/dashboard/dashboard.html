@@ -49,7 +49,7 @@
             <div class="col-md-12 py-3">
                 <div class="text-success">
                     <a class="btn btn-success" href=""><i class="fa fa-map-marker"></i></a> <span class="px-2 font-weight-700">{{dc.site_opted.site_name}}, {{dc.site_opted.site_city}}</span>
-                    <a class="px-5" style="font-weight: normal; font-size: 12px;" href="#">
+                    <a class="px-5 hide font-weight-300 font-size-11" href="#">
                         <u>Change</u>
                     </a>
                     <button class="btn btn-success btn-sm pull-right m-3" ng-show="dc.location_history" ng-click="dc.showLocations()"> Back </button>
@@ -73,14 +73,14 @@
                             <small class="font-weight-300"><i class="fa fa-thermometer"></i> {{location.location_temperature | number:2}} °F</small>
                             <small class="font-weight-300 ml-3"><i class="fa fa-tint"></i> {{location.location_humidity | number:2}} %</small>
 
-                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'warning'}).length>0" class="btn bg-warning-light badge-custom ml-5 font-size-12" on1click="var ep = $(this).closest('.card').find('.event-info-warning').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show warnings' : 'Hide warnings' );"
+                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'warning'}).length>0" class="btn btn-md bg-warning-light ml-5 font-size-13" on1click="var ep = $(this).closest('.card').find('.event-info-warning').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show warnings' : 'Hide warnings' );"
                                 data-toggle="tooltip" title="{{(dc.events[location.location_id]|filter:{event_level:'warning'}).length}} warnings"> {{(dc.events[location.location_id]|filter:{event_level:'warning'}).length}}</button>
 
-                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'alert'}).length > 0" class="btn bg-alert-light badge-custom ml-2 font-size-12" on1click="var ep = $(this).closest('.card').find('.event-info-alert').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show alerts' : 'Hide alerts' );"
+                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'alert'}).length > 0" class="btn btn-md bg-alert-light ml-2 font-size-13" on1click="var ep = $(this).closest('.card').find('.event-info-alert').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show alerts' : 'Hide alerts' );"
                                 data-toggle="tooltip" title="{{(dc.events[location.location_id]|filter:{event_level:'alert'}).length}} alerts"> {{(dc.events[location.location_id]|filter:{event_level:'alert'}).length}}</button>
 
-                            <button ng-if="(dc.events[location.location_id]).length > 0" class="btn btn-success badge-custom ml-2 font-size-12" ng-click="dc.showAll($event)" data-toggle="tooltip" title="Show Location Events"> <i class="fa fa-plus"></i> </button>
-                            <button data-toggle="tooltip" title="Show Location History" class="btn btn-success badge-custom ml-2 font-size-12" ng-click="dc.showLocationHistory($event, location)"> <i class="fa fa-history"></i> </button>
+                            <button ng-if="(dc.events[location.location_id]).length > 0" class="btn btn-md btn-success ml-2 font-size-13" ng-click="dc.showAll($event)" data-toggle="tooltip" title="Show Location Events"> <i class="fa fa-plus"></i> </button>
+                            <button data-toggle="tooltip" title="Show Location History" class="btn btn-md btn-success ml-2 font-size-13" ng-click="dc.showLocationHistory($event, location)"> <i class="fa fa-history"></i> </button>
                         </div>
                     </div>
 
@@ -126,7 +126,7 @@
         </div>
 
 
-
+        <!-- Images History -->
         <div class="row" id="locations-history" ng-show="dc.location_history">
             <div class="col-md-8 py-3 bg-primary">
                 <div class="row">
@@ -149,6 +149,10 @@
 
                                 </p>
                             </div>
+                            <div id="carousel_controls" style="position: relative; top:-175px; z-index: 1000; padding: 5px;">
+                                <button class="btn btn-sm btn-default" onclick="$('.owl-carousel').trigger('prev.owl.carousel');"><i class="fa fa-arrow-left"></i></button>
+                                <button class="btn btn-sm btn-default pull-right"  onclick="$('.owl-carousel').trigger('next.owl.carousel');"><i class="fa fa-arrow-right"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -162,7 +166,7 @@
             <div class="col-md-4 bg-primary">
                 <div class="row">
 
-                    <div class="col-md-4 p-2" ng-repeat="image_cal in dc.image_calendar">
+                    <div class="col-md-6 p-2" ng-repeat="image_cal in dc.image_calendar">
                         <div class="card" style="cursor: pointer">
                             <img ng-click="dc.showLocationHistoryByDate($event, image_cal)" class="card-img-top" src="{{image_cal.image_thumbnail}}">
                             <div class="card-body p-1">
@@ -174,27 +178,8 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="row" id="locations-history">
-                <link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.carousel.min.css">
-                <link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.theme.default.min.css">
-
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="history_image"></div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div> -->
-
+        <!-- Images History End-->
+     
 
 
     </div>
