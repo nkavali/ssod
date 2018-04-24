@@ -50,7 +50,15 @@
         dc.showLocations = function() {
             $('.owl-carousel').trigger('stop.owl.autoplay');
             dc.location_history = null;
-        }
+        };
+
+        dc.showFullImage = function($event) {
+            var card = $($event.currentTarget).closest('.card');
+            var imgSrc = $(card).find('.history_image').attr('src');
+            $('.img-zoom').attr('src', imgSrc);
+            $('#myModalLabel').html($(card).find('.site-hist-name').html() + '  <small class="font-weight-300">' + $(card).find('.site-hist-date').html() + '</small>');
+            $('#myModal').modal('show');
+        };
 
         dc.toggleContainer = function($event, container) {
             $event.stopPropagation();

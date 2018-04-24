@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="assets/plugins/owlcarousel/assets/owl.theme.default.min.css">
 
 
-<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+<nav class="navbar navbar-expand-md bg-primary navbar-light">
     <a class="navbar-brand text-success" href="#">SiteSuptOnDemand</a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fa fa-lg fa-bars"></i> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <!-- Main Menu Start -->
         <ul class="nav navbar-nav ml-md-5 mr-auto">
@@ -126,6 +126,7 @@
         </div>
 
 
+
         <div class="row" id="locations-history" ng-show="dc.location_history">
             <div class="col-md-8 py-3 bg-primary">
                 <div class="row">
@@ -135,7 +136,7 @@
                             <div class="card-img-overlay">
                                 <div class="card-title">
                                     <h6 class="site-hist-name text-success"></h6>
-                                    <button class="btn btn-sm btn-success ml-3 pull-right" data-toggle="tooltip" title="Full Image">
+                                    <button ng-click="dc.showFullImage($event)" class="btn btn-sm btn-success ml-3 pull-right" data-toggle="tooltip" title="Full Image">
                                             <i class="fa fa-external-link"></i>
                                           </button>
                                 </div>
@@ -165,7 +166,7 @@
                         <div class="card" style="cursor: pointer">
                             <img ng-click="dc.showLocationHistoryByDate($event, image_cal)" class="card-img-top" src="{{image_cal.image_thumbnail}}">
                             <div class="card-body p-1">
-                                <h5 class="card-title p-1 m-0 text-center font-size-11">{{image_cal.timestamp | date:'yyyy-mm-dd'}}</h5>
+                                <h5 class="card-title p-1 m-0 text-center font-size-11">{{image_cal.timestamp | date:'yyyy-MM-dd'}}</h5>
                             </div>
                         </div>
                     </div>
@@ -196,5 +197,23 @@
 
 
 
+    </div>
+</div>
+
+
+<!-- Full Page Modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-success" id="myModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body p-0">
+                <img class="img-zoom" src="" width="100%" />
+            </div>
+        </div>
     </div>
 </div>

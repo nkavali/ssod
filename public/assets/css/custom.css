@@ -7878,3 +7878,13 @@ input {
 .card:hover .card-img-overlay {
     background: #000000d6;
 }
+
+.navbar-toggler {
+    border: none !important;
+}
+
+.navbar-brand {
+    background: url(../../assets/img/favicon.png) 0px no-repeat;
+    background-size: 25px;
+    padding-left: 29px;
+}
