@@ -113,7 +113,7 @@
             var date1 = new Date();
             var date2 = new Date();
             data.to = $filter('date')(date1, "yyyy-MM-dd");
-            date2.setDate(date2.getDate() - 1);
+            date2.setDate(date2.getDate());
             data.from = $filter('date')(date2, "yyyy-MM-dd");
 
             dc.location_opted = location;
