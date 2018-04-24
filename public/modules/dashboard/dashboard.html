@@ -73,10 +73,10 @@
                             <small class="font-weight-300"><i class="fa fa-thermometer"></i> {{location.location_temperature | number:2}} °F</small>
                             <small class="font-weight-300 ml-3"><i class="fa fa-tint"></i> {{location.location_humidity | number:2}} %</small>
 
-                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'warning'}).length>0" class="btn btn-md bg-warning-light ml-5 font-size-13" on1click="var ep = $(this).closest('.card').find('.event-info-warning').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show warnings' : 'Hide warnings' );"
+                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'warning'}).length>0" class="btn btn-md bg-warning-light ml-5 font-size-13 text-primary" on1click="var ep = $(this).closest('.card').find('.event-info-warning').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show warnings' : 'Hide warnings' );"
                                 data-toggle="tooltip" title="{{(dc.events[location.location_id]|filter:{event_level:'warning'}).length}} warnings"> {{(dc.events[location.location_id]|filter:{event_level:'warning'}).length}}</button>
 
-                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'alert'}).length > 0" class="btn btn-md bg-alert-light ml-2 font-size-13" on1click="var ep = $(this).closest('.card').find('.event-info-alert').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show alerts' : 'Hide alerts' );"
+                            <button ng-if="(dc.events[location.location_id]|filter:{event_level:'alert'}).length > 0" class="btn btn-md bg-alert-light ml-2 font-size-13 text-primary" on1click="var ep = $(this).closest('.card').find('.event-info-alert').parent(); ep.toggleClass('show hide'); $(this).attr('data-original-title', ep.hasClass('hide')?'Show alerts' : 'Hide alerts' );"
                                 data-toggle="tooltip" title="{{(dc.events[location.location_id]|filter:{event_level:'alert'}).length}} alerts"> {{(dc.events[location.location_id]|filter:{event_level:'alert'}).length}}</button>
 
                             <button ng-if="(dc.events[location.location_id]).length > 0" class="btn btn-md btn-success ml-2 font-size-13" ng-click="dc.showAll($event)" data-toggle="tooltip" title="Show Location Events"> <i class="fa fa-plus"></i> </button>
@@ -151,7 +151,7 @@
                             </div>
                             <div id="carousel_controls" style="position: relative; top:-175px; z-index: 1000; padding: 5px;">
                                 <button class="btn btn-sm btn-default" onclick="$('.owl-carousel').trigger('prev.owl.carousel');"><i class="fa fa-arrow-left"></i></button>
-                                <button class="btn btn-sm btn-default pull-right"  onclick="$('.owl-carousel').trigger('next.owl.carousel');"><i class="fa fa-arrow-right"></i></button>
+                                <button class="btn btn-sm btn-default pull-right" onclick="$('.owl-carousel').trigger('next.owl.carousel');"><i class="fa fa-arrow-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -179,7 +179,7 @@
             </div>
         </div>
         <!-- Images History End-->
-     
+
 
 
     </div>
