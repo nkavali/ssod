@@ -27,7 +27,7 @@
     },
 
     "prod": {
-        "port": 8080,
+        "port": 80,
         "upload_folder": "tmp/",
         "db": {
             "host": "iSiteWatch.ct7j0bplabvw.ap-south-1.rds.amazonaws.com",
