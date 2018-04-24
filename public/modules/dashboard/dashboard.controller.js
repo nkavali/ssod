@@ -34,7 +34,7 @@
             var current = property.item.index;
             var pos = $(property.target).find(".owl-item").eq(current).find("img").attr('pos');
 
-            if (pos) {
+            if (pos && dc.location_history && dc.location_history.length > 0) {
                 var rec = dc.location_history[pos];
                 $('.history_image').attr('src', rec.image);
                 $('.site-hist-name').html(rec.name);
