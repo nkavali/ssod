@@ -127,7 +127,7 @@
 
 
         <!-- Images History -->
-        <div class="row" id="locations-history" ng-show="dc.location_history">
+        <div class="row" id="locations-history-1" ng-show="dc.location_history_1">
             <div class="col-md-8 py-3 bg-primary">
                 <div class="row">
                     <div class="col-md-12">
@@ -180,10 +180,40 @@
         </div>
         <!-- Images History End-->
 
+        <div class="row" id="locations-history" ng-show="dc.location_history">
+            <div class="col-md-8 py-3 bg-primary">
+                <div class="row">
+                    <div class="col-md-12" id="owl-frame">
+                        <div id="owl" class="owl-carousel owl-theme owl-loaded owl-drag">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="owl-thumb-frame">
+                        <div id="owl-thumb" class="owl-carousel owl-carousel owl-theme owl-loaded owl-drag">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 bg-primary">
+                <div class="row">
 
+                    <div class="col-md-6 p-2" ng-repeat="image_cal in dc.image_calendar">
+                        <div class="card" style="cursor: pointer">
+                            <img ng-click="dc.showLocationHistoryByDate($event, image_cal)" class="card-img-top" src="{{image_cal.image_thumbnail}}">
+                            <div class="card-body p-1">
+                                <h5 class="card-title p-1 m-0 text-center font-size-11">{{image_cal.timestamp | date:'yyyy-MM-dd'}}</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>
+
 
 
 <!-- Full Page Modal -->
