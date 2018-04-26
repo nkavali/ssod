@@ -31,10 +31,10 @@
             <li class="dropdown">
                 <a data-target="#user_actions" class="dropdown-toggle font-weight-700" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="user-name">{{dc.user.user_name}}</span> <span class="caret"></span></a>
                 <div class="dropdown-menu font-size-13 mr-5" id="user_actions">
-                    <a class="dropdown-item text-dark px-md-3" href="#profile">Profile</a>
-                    <a class="dropdown-item text-dark px-md-3" href="#settings">Settings</a>
-                    <a class="dropdown-item text-dark px-md-3" href="#change_password">Change Password</a>
-                    <a class="dropdown-item text-dark px-md-3" href="#logout">Logout</a>
+                    <a class="dropdown-item text-dark px-md-3" href="">Profile</a>
+                    <a class="dropdown-item text-dark px-md-3" href="">Settings</a>
+                    <a class="dropdown-item text-dark px-md-3" href="">Change Password</a>
+                    <a class="dropdown-item text-success px-md-3" href="#logout">Logout</a>
                 </div>
             </li>
         </ul>
@@ -127,66 +127,32 @@
 
 
         <!-- Images History -->
-        <div class="row" id="locations-history-1" ng-show="dc.location_history_1">
-            <div class="col-md-8 py-3 bg-primary">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <img class="card-img-top history_image" src="">
-                            <div class="card-img-overlay">
-                                <div class="card-title">
-                                    <h6 class="site-hist-name text-success"></h6>
-                                    <button ng-click="dc.showFullImage($event)" class="btn btn-sm btn-success ml-3 pull-right" data-toggle="tooltip" title="Full Image">
-                                            <i class="fa fa-external-link"></i>
-                                          </button>
-                                </div>
-                                <div class="site-hist-date text-primary font-weight-300"></div>
-                                <p class="card-text text-primary font-weight-300 py-3">
-                                    <span>
-                              <i class="fa fa-thermometer"></i> Temperature <span class="site-hist-temp"></span></span>
-                                    <span class="ml-3">
-                              <i class="fa fa-tint"></i> Humidity <span class="site-hist-humid"></span></span>
 
-                                </p>
-                            </div>
-                            <div id="carousel_controls" style="position: relative; top:-175px; z-index: 1000; padding: 5px;">
-                                <button class="btn btn-sm btn-default" onclick="$('.owl-carousel').trigger('prev.owl.carousel');"><i class="fa fa-arrow-left"></i></button>
-                                <button class="btn btn-sm btn-default pull-right" onclick="$('.owl-carousel').trigger('next.owl.carousel');"><i class="fa fa-arrow-right"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="owl-carousel owl-theme owl-loaded owl-drag">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 bg-primary">
-                <div class="row">
-
-                    <div class="col-md-6 p-2" ng-repeat="image_cal in dc.image_calendar">
-                        <div class="card" style="cursor: pointer">
-                            <img ng-click="dc.showLocationHistoryByDate($event, image_cal)" class="card-img-top" src="{{image_cal.image_thumbnail}}">
-                            <div class="card-body p-1">
-                                <h5 class="card-title p-1 m-0 text-center font-size-11">{{image_cal.timestamp | date:'yyyy-MM-dd'}}</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
         <!-- Images History End-->
 
         <div class="row" id="locations-history" ng-show="dc.location_history">
             <div class="col-md-8 py-3 bg-primary">
                 <div class="row">
-                    <div class="col-md-12" id="owl-frame">
-                        <div id="owl" class="owl-carousel owl-theme owl-loaded owl-drag">
+                    <div class="col-md-12 owl-frame-container">
+                        <div class="owl-ctrls text-center" style="position: absolute; top: 150px; z-index: 500; left: 20px; right: 20px;" ng-show="dc.location_history.length>0">
+                            <button class="btn btn-sm btn-success pull-left" onclick="$('#owl-thumb-frame .owl-carousel').trigger('prev.owl.carousel');">
+                                            <i class="fa fa-lg fa-arrow-left"></i>
+                                        </button>
+
+                            <button class="btn btn-sm btn-success" ng-click="dc.toggleImageScroll($event)">
+                                    <i class="fa fa-lg fa-pause"></i>
+                                </button>
+                            <button class="btn btn-sm btn-success pull-right" onclick="$('#owl-thumb-frame .owl-carousel').trigger('next.owl.carousel');">
+                                            <i class="fa fa-lg fa-arrow-right"></i>
+                                        </button>
                         </div>
+                        <div id="owl-frame">
+                            <div id="owl" class="owl-carousel owl-theme owl-loaded owl-drag">
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-12" id="owl-thumb-frame">
@@ -222,12 +188,11 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-success" id="myModalLabel"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body p-0">
+            <div class="modal-body p-1">
                 <img class="img-zoom" src="" width="100%" />
+            </div>
+            <div class="p-1">
+                <span class="text-success" id="myModalLabel"></span><button class="pull-right btn btn-sm btn-success" data-dismiss="modal" aria-label="Close">Close</button>
             </div>
         </div>
     </div>

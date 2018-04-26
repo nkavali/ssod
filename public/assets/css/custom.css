@@ -7869,13 +7869,13 @@ input {
     display: block;
 }
 
-.card-img-overlay {
+#locations-history .card-img-overlay {
     height: 120px;
     background: -moz-linear-gradient(left, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
     background: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-.card:hover .card-img-overlay {
+#locations-history .card:hover .card-img-overlay {
     background: #000000d6;
 }
 
@@ -7887,4 +7887,20 @@ input {
     background: url(../../assets/img/favicon.png) 0px no-repeat;
     background-size: 25px;
     padding-left: 29px;
+}
+
+.owl-ctrls button {
+    opacity: 0.4;
+}
+
+@media (min-width: 768px) {
+    .owl-ctrls button {
+        opacity: 1;
+    }
+    .owl-frame-container .owl-ctrls {
+        display: none;
+    }
+    .owl-frame-container:hover .owl-ctrls {
+        display: block;
+    }
 }
